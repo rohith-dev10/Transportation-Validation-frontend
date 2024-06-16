@@ -22,11 +22,12 @@ const Profile = () => {
     const navigate = useNavigate();
     const toast = useToast();
     const setAuthState = useSetRecoilState(authState);
+    const baseurl="https://transportation-validation-platform.onrender.com"
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/users/${userId}`, {
+                const res = await axios.get(`${baseurl}/api/users/${userId}`, {
                     headers: {
                         'x-auth-token': localStorage.getItem('token')
                     }
@@ -48,7 +49,7 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/api/users/${userId}/profile`, profileData, {
+            await axios.post(`${baseurl}/api/users/${userId}/profile`, profileData, {
                 headers: {
                     'x-auth-token': localStorage.getItem('token')
                 }

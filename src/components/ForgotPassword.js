@@ -11,12 +11,13 @@ const ForgotPassword = () => {
     const [isOTPVerified, setIsOTPVerified] = useState(false);
     const [isLoading,setIsLoading]=useState(false)
     const toast = useToast();
+    const baseurl="https://transportation-validation-platform.onrender.com"
 
     const handleSendOTP = async (e) => {
         setIsLoading(true)
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
+            const res = await axios.post(`${baseurl}/api/auth/forgot-password`, { email });
             toast({
                 title: 'OTP Sent',
                 description: res.data.msg,
@@ -42,7 +43,7 @@ const ForgotPassword = () => {
         setIsLoading(true)
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/reset-password', { email, otp, newPassword });
+            const res = await axios.post(`${baseurl}/api/auth/reset-password`, { email, otp, newPassword });
             toast({
                 title: 'Password Reset',
                 description: res.data.msg,

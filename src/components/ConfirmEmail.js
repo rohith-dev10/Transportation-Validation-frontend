@@ -6,11 +6,12 @@ const ConfirmEmail = () => {
     const { token } = useParams();
     console.log(token);
     const history = useNavigate();
+    const baseurl="https://transportation-validation-platform.onrender.com"
 
     useEffect(() => {
         const confirmEmail = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/auth/confirm/${token}`);
+                const res = await axios.get(`${baseurl}/api/auth/confirm/${token}`);
                 console.log(res.data);
                 localStorage.setItem('token', res.data.token);
                 history(`/profile/${res.data.userId}`);
