@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import ConfirmEmail from './components/ConfirmEmail';
+import Profile from './components/Profile';
+import Auth from './components/Auth';
+import Dashboard from './components/Dashboard';
+import { authState } from './recoil/atom';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [auth, setAuthState] = useRecoilState(authState);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Set isAuthenticated to true if token is present
+            setAuthState((prevAuth) => ({ ...prevAuth, isAuthenticated: true }));
+        }
+    }, [setAuthState]);
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/confirm/:token" element={<ConfirmEmail />} />
+                <Route path="/profile/:userId" element={<Profile />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/dashboard" element={<Dashboard/>} />
+                <Route path="/" element={auth.isAuthenticated ? <Navigate to="/dashboard" />:<Auth />} />
+                {/* other routes */}
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

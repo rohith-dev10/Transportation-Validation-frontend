@@ -1,0 +1,65 @@
+.auth-container {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    transition: border 0.3s;
+}
+
+.toggle-buttons button.active {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input, .form select {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+.form button:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password {
+    background-color: transparent;
+    color: #007bff;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-right: auto;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
