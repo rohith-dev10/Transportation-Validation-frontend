@@ -22,7 +22,8 @@ const Profile = () => {
     const navigate = useNavigate();
     const toast = useToast();
     const setAuthState = useSetRecoilState(authState);
-    const baseurl="https://transportation-validation-platform.onrender.com"
+    const baseurl=process.env.REACT_APP_baseurl
+    // const baseurl="https://transportation-validation-platform.onrender.com"
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -100,16 +101,6 @@ const Profile = () => {
                                 />
                             </FormControl>
                             <FormControl>
-                                <FormLabel>Contact</FormLabel>
-                                <Input
-                                    type="text"
-                                    name="contact"
-                                    value={profileData.contact || ''}
-                                    onChange={handleChange}
-                                    placeholder="Contact"
-                                />
-                            </FormControl>
-                            <FormControl>
                                 <FormLabel>Maintenance API</FormLabel>
                                 <Input
                                     type="text"
@@ -144,16 +135,6 @@ const Profile = () => {
                                 />
                             </FormControl>
                             <FormControl>
-                                <FormLabel>Contact</FormLabel>
-                                <Input
-                                    type="text"
-                                    name="contact"
-                                    value={profileData.contact || ''}
-                                    onChange={handleChange}
-                                    placeholder="Contact"
-                                />
-                            </FormControl>
-                            <FormControl>
                                 <FormLabel>Driving History</FormLabel>
                                 <Input
                                     type="text"
@@ -175,16 +156,6 @@ const Profile = () => {
                                     value={profileData.companyName || ''}
                                     onChange={handleChange}
                                     placeholder="Company Name"
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel>Contact</FormLabel>
-                                <Input
-                                    type="text"
-                                    name="contact"
-                                    value={profileData.contact || ''}
-                                    onChange={handleChange}
-                                    placeholder="Contact"
                                 />
                             </FormControl>
                             <FormControl>

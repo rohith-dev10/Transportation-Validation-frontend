@@ -7,6 +7,7 @@ import { authState } from './recoil/atom';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import ForgotPassword from './components/ForgotPassword';
+import ProfileForm from './components/ProfileForm';
 
 function App() {
     const [auth, setAuthState] = useRecoilState(authState);
@@ -22,12 +23,13 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/confirm/:token" element={<ConfirmEmail />} />
-                <Route path="/profile/:userId" element={<Profile />} />
-                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/" element={auth.isAuthenticated ? <Navigate to="/dashboard" />:<Auth />} />
+                <Route path="/confirm/:token" element={<ConfirmEmail />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="user-profile/:userId" element={<Profile />} />
+                <Route path="/profile/:userId" element={<ProfileForm />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                {/* <Route path="/dashboard" element={auth.isProfileComplete?<Dashboard/>: <Navigate to={`/profile/${auth.userId}`} />} /> */}
                 {/* other routes */}
             </Routes>
         </Router>

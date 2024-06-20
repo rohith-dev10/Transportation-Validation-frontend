@@ -18,7 +18,8 @@ const Auth = () => {
     const toast = useToast();
     const history = useNavigate();
     const setAuthState = useSetRecoilState(authState);
-    const baseurl="https://transportation-validation-platform.onrender.com"
+    const baseurl=process.env.REACT_APP_baseurl
+    // const baseurl="https://transportation-validation-platform.onrender.com"
 
     const toggleForm = () => {
         setIsLogin(!isLogin);
@@ -46,13 +47,17 @@ const Auth = () => {
                         isClosable: true,
                     });
                 }
-                else if (!res.data.isProfiledataUpdated) {
+                else if (!res.data.isProfileUpdated) {
                     history(`/profile/${res.data.userId}`)
+                }
+                else if (!res.data.isProfiledataUpdated) {
+                    history(`/user-profile/${res.data.userId}`)
                 }
                 else {
                     setAuthState({
                         isAuthenticated: true,
                         isProfileComplete: res.data.isProfiledataUpdated,
+                        userId: res.data.userId
                     });
                 }
             } catch (err) {

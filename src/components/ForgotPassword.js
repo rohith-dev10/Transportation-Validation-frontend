@@ -11,7 +11,8 @@ const ForgotPassword = () => {
     const [isOTPVerified, setIsOTPVerified] = useState(false);
     const [isLoading,setIsLoading]=useState(false)
     const toast = useToast();
-    const baseurl="https://transportation-validation-platform.onrender.com"
+    // const baseurl="https://transportation-validation-platform.onrender.com"
+    const baseurl=process.env.REACT_APP_baseurl
 
     const handleSendOTP = async (e) => {
         setIsLoading(true)

@@ -6,7 +6,8 @@ const ConfirmEmail = () => {
     const { token } = useParams();
     console.log(token);
     const history = useNavigate();
-    const baseurl="https://transportation-validation-platform.onrender.com"
+    // const baseurl="https://transportation-validation-platform.onrender.com"
+    const baseurl=process.env.REACT_APP_baseurl
 
     useEffect(() => {
         const confirmEmail = async () => {
